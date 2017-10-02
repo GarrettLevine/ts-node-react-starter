@@ -4,6 +4,6 @@ import * as ReactDOM from 'react-dom';
 import { Hello } from './components/Hello';
 
 ReactDOM.render(
-    <Hello header="Welcome" subHeader="friendos" />,
+    <Hello header='Welcome' subHeader='friendos' />,
     document.getElementById('app'),
 );
