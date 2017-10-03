@@ -42,6 +42,10 @@ module.exports = {
                 loaders: [ 'babel-loader', 'ts-loader' ],
                 include: path.resolve('src')
             },
+            {
+                test: /\.scss$/,
+                loaders: ["style-loader", "css-loader", "sass-loader"],
+            },
         ],
     },
     plugins: [
