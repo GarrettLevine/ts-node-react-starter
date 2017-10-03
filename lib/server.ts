@@ -13,6 +13,6 @@ app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/..`));
 
 app.listen('3000', () => {
-    console.log(('  App is running at http://localhost:3000 in dev mode'));
-    console.log('  Press CTRL-C to stop\n');
+    console.log(('App is running at http://localhost:3000 in dev mode'));
+    console.log('Press CTRL-C to stop\n');
 });
