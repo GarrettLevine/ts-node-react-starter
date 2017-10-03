@@ -1,3 +1,5 @@
+$blue: lighten(steelblue, 10%);
+
 .hello {
-    background-color: red;
+    color: $blue;
 }
