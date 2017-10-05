@@ -4,7 +4,7 @@ import * as path from 'path';
 
 import { Request, Response } from 'express';
 
-const router = require('router');
+const router = require('./router');
 const app = express();
 
 app.set('trust proxy', 1);
