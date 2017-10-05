@@ -9,7 +9,7 @@ const dbPort: number = Number(process.env.GOOSE_DB_PORT) || 5432;
 const options: Sequelize.Options = {
     host: dbHost,
     port: dbPort,
-    dialect: 'postgress',
+    dialect: 'postgres',
     logging: false,
     retry: { max: 3 },
 };

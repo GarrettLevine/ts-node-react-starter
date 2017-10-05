@@ -23,8 +23,13 @@ const User = db.define('User', {
     },
     start_date: {
         type: Sequelize.DATEONLY,
+    },
+    google_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
     },
+}, {
+    freezeTableName: true,
 });
 
 module.exports = User;

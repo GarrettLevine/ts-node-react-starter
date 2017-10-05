@@ -4,6 +4,6 @@ interface UserModel {
     last_name: string;
     avatar_url: string;
     start_date: Date;
-    role: string;
-    department: string;
 }
+
+
