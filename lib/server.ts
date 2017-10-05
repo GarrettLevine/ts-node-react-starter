@@ -1,11 +1,15 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as Passport from 'passport';
 import * as path from 'path';
 
 import { Request, Response } from 'express';
 
 const router = require('./router');
 const app = express();
+
+// passport configuration
+require('./server/config/passport')(Passport); // pass passport for configuration
 
 app.set('trust proxy', 1);
 

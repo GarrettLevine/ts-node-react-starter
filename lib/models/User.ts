@@ -25,12 +25,6 @@ const User = db.define('User', {
         type: Sequelize.DATEONLY,
         allowNull: false,
     },
-    role: {
-        type: Sequelize.STRING,
-    },
-    department: {
-        type: Sequelize.STRING,
-    },
 });
 
 module.exports = User;
