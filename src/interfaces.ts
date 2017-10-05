@@ -4,5 +4,5 @@ interface Window {
 
 interface Action {
     type: string;
-    payload: object;
+    payload: any;
 }
