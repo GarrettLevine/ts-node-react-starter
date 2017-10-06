@@ -4,7 +4,7 @@
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es5",
+        "target": "es2016",
         "jsx": "react",
         "baseUrl": ".",
         "paths": {
@@ -12,7 +12,7 @@
                 "node_modules/*",
                 "src/types/*"
             ]
-        }
+        },
     },
     "include": [
         "./src/**/*",
