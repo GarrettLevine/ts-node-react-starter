@@ -1,6 +1,6 @@
 import * as Express from 'express';
 
-const user = require('../models/User');
+const user = require('../../models/User');
 
 function getUser(req: Express.Request, res: Express.Response) {
     if (!req.session.passport || !req.session.passport.user) {

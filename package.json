@@ -40,6 +40,7 @@
     "express-session": "^1.15.6",
     "history": "^4.7.2",
     "html-webpack-plugin": "^2.30.1",
+    "node-salesforce": "^0.8.0",
     "node-sass": "^4.5.3",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
