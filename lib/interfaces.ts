@@ -6,4 +6,7 @@ interface UserModel {
     start_date: Date;
 }
 
-
+interface GeoCoordinates {
+    lat: number;
+    lon: number;
+}
