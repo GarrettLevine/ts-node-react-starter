@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 import * as google from '../config/google';
 
 export function getCoordinates(addr: string): Promise<GeoCoordinates> {
@@ -5,11 +7,11 @@ export function getCoordinates(addr: string): Promise<GeoCoordinates> {
     const encAddr = encodeURIComponent(addr);
     const uri = `https://maps.googleapis.com/maps/api/geocode/json?key=${encKey}&address=${encAddr}`;
     const req = new Request(uri, { method: 'GET' });
-    return fetch(req)
-        .then(res => {
+    return fetch(uri, { method: 'GET' })
+        .then((res: any) => {
             return res.json();
         })
-        .then(obj => {
+        .then((obj: any) => {
             if (!obj || !obj.results || obj.results.length < 1) {
                 return Promise.reject('no results returned');
             }
