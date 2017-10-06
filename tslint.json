@@ -1,5 +1,6 @@
 {
     "rules": {
+        "no-floating-promises": false,
         "class-name": true,
         "comment-format": [
             true,
