@@ -1,7 +1,7 @@
 {
   "name": "ts-node-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "Smal Typescript node project with react",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm run watch",
