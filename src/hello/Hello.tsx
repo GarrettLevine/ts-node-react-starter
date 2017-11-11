@@ -6,11 +6,13 @@ export interface HelloProps {
     subHeader: string;
 }
 
-export const Hello = (props: HelloProps) => {
-    return (
-        <div className='hello'>
-            <h1>{props.header}</h1>
-            <h2>{props.subHeader}</h2>
-        </div>
-    );
-};
+export class Hello extends React.Component<HelloProps, undefined> {
+    render() {
+        return (
+            <div className='hello'>
+                <h1>{this.props.header}</h1>
+                <h2>{this.props.subHeader}</h2>
+            </div>
+        );
+    }
+}
