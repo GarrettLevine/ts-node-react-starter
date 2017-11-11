@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
     devtool: 'eval',
@@ -23,7 +24,7 @@ module.exports = {
         },
         contentBase: `${__dirname}/public`,
         historyApiFallback: true,
-        publicPath: 'http://localhost:8080',
+        publicPath: 'http://localhost:3000',
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
@@ -31,7 +32,7 @@ module.exports = {
         },
         proxy: {
             '/': {
-                target: 'http://localhost:3000',
+                target: 'http://localhost:8080',
             },
         },
     },
@@ -44,7 +45,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loaders: ["style-loader", "css-loader", "sass-loader"],
+                loaders: ["c", "css-loader", "sass-loader"],
             },
         ],
     },
@@ -54,6 +55,10 @@ module.exports = {
             filename: 'index.html',
             appMountId: 'app',
             inject: true,
+        }),
+        new WriteFilePlugin({ log: true }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor'],
         }),
     ]
 };
