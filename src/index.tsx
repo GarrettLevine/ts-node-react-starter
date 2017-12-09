@@ -1,5 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as ReactRedux from 'react-redux';
+
 import { Provider } from 'react-redux';
 import {
     applyMiddleware,
