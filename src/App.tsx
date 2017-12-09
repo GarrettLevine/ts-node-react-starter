@@ -8,7 +8,7 @@ export default class App extends React.Component<{}, {}> {
             <section className='app__container'>
                 <Hello
                     header='the project'
-                    subHeader='is ALIVE'
+                    subHeader='is the one that you want'
                 />
             </section>
         );
