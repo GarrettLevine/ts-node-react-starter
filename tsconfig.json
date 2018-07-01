@@ -17,5 +17,8 @@
     "include": [
         "./src/**/*",
         "./lib/**/*"
+    ],
+    "files.exclude": [
+        "node_modules"
     ]
 }

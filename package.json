@@ -15,7 +15,9 @@
     "watch-ts": "tsc -w"
   },
   "dependencies": {
+    "@types/redux-thunk": "^2.1.0",
     "body-parser": "^1.18.2",
+    "bulma": "^0.7.1",
     "express": "^4.16.1",
     "history": "^4.7.2",
     "react": "^16.0.0",

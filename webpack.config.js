@@ -5,7 +5,9 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
     devtool: 'eval',
-    entry: './src/index.tsx',
+    entry: {
+        bundle: ['./src/index.tsx', './src/scss/main.scss'],
+    },
     output: {
         filename: '[name].js',
         path: `${__dirname}/public`,

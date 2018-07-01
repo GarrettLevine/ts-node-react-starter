@@ -4,13 +4,13 @@ import { Hello } from './hello/Hello';
 
 export default class App extends React.Component<{}, {}> {
     render() {
-        return (
-            <section className='app__container'>
-                <Hello
-                    header='the project'
-                    subHeader='is the one that you want'
-                />
-            </section>
-        );
-    }
+      return (
+        <section className='app__container'>
+          <Hello
+          header='the project'
+          subHeader='is the one that you want'
+          />
+      </section>
+    );
+  }
 }

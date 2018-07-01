@@ -7,7 +7,7 @@ router.get('/api', (req, res, next) => {
     res.status(200).json({ great: 'great' });
 });
 
-router.get('*', (req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
+router.get('*', (_req: Express.Request, res: Express.Response) => {
     res.sendFile(path.resolve('public/index.html'));
 });
 

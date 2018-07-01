@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// 2. Set your own initial variables
+// Update blue
+$blue: #31C1D7;
+$blue-invert: #fff;
+// Add pink and its invert
+$pink: #E96775;
+$pink-invert: #fff;
+
+// 3. Set the derived variables
+$primary: $pink;
+$primary-invert: $pink-invert;
+$secondary: $blue;
+$secondary-invert: $blue-invert;
+
+$font-serif: 'Nunito', sans-serif;
+$family-primary: $font-serif;
+
+// Add new color variables to the color map.
+$addColors: (
+  "secondary": ($blue, $blue-invert),
+  "primary": ($pink, $pink-invert),
+);
+$colors: map-merge($colors, $addColors);
