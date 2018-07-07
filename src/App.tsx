@@ -1,14 +1,16 @@
 import * as React from 'react';
 
-import { Hello } from './hello/Hello';
+import components from './components';
+const { Header, componentTypes } = components;
 
 export default class App extends React.Component<{}, {}> {
     render() {
       return (
         <section className='app__container'>
-          <Hello
-          header='the project'
-          subHeader='is the one that you want'
+          <Header
+            title='the project'
+            subtitle='is the one that you want'
+            type={componentTypes.HeaderType.Primary}
           />
       </section>
     );
