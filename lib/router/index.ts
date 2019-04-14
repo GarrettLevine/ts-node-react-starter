@@ -1,9 +1,10 @@
 import * as Express from 'express';
 import * as path from 'path';
+import * as responseTypes from '../types/response';
 
 const router = Express.Router();
-router.get('/api', (req, res, next) => {
-    res.status(200).json({ great: 'great' });
+router.get('/api', (_req, res) => {
+    res.status(200).json(new responseTypes.DataResponse('great'));
 });
 
 router.get('*', (_req: Express.Request, res: Express.Response) => {

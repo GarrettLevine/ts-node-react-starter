@@ -13,7 +13,7 @@ import rootReducer from './root-reducer';
 
 const store = createStore(rootReducer, {}, compose(
     applyMiddleware(),
-    // used to allow redux devtools to intereact with the store
+    // used to allow redux devtools to interact with the store
     window.devToolsExtension ? window.devToolsExtension() : (f: any)  => f,
 ));
 

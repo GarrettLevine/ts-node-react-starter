@@ -11,7 +11,7 @@ import * as History from 'history';
 import App from './App';
 
 const history = History.createBrowserHistory();
-class RouterContainer extends React.Component<undefined, undefined> {
+class RouterContainer extends React.Component {
     render(): any {
         return (
             <Router>
