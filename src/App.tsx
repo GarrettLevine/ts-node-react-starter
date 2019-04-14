@@ -8,7 +8,7 @@ export default class App extends React.Component<{}, {}> {
       return (
         <section className='app__container'>
           <Header
-            title='the project'
+            title='This project'
             subtitle='is the one that you want'
             type={componentTypes.HeaderType.Primary}
           />

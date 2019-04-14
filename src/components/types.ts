@@ -8,4 +8,4 @@ export enum HeaderType {
   Danger = 'is-danger',
   Light = 'is-light',
   Dark = 'is-dark',
-};
+}
