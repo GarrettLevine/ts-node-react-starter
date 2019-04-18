@@ -1,4 +1,4 @@
-class ErrorType {
+export class ErrorType {
   message: string;
 
   constructor(msg: string) {
