@@ -1,9 +1,10 @@
-import * as types from './types';
-import Header from './Header';
+import * as Header from './Header';
 
-const components = {
-  Header,
-  componentTypes: types,
+const componentTypes = {
+  ...Header.default.Types,
 };
 
-export default components;
+export default {
+  Header: Header.default.Header,
+  componentTypes: componentTypes,
+};
