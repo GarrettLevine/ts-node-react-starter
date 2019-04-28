@@ -13,7 +13,6 @@ module.exports = {
         path: `${__dirname}/public`,
         publicPath: 'http://localhost:8080/',
     },
-    devtool: 'source-map',
     resolve: {
         extensions: [ '.ts', '.tsx', '.js', '.json', '.jsx'],
         modules: ['src', 'node_modules'],
@@ -58,9 +57,11 @@ module.exports = {
             appMountId: 'app',
             inject: true,
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              NODE_ENV: JSON.stringify('development'),
+            },
+          }),
         new WriteFilePlugin({ log: true }),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor'],
-        }),
     ]
 };
