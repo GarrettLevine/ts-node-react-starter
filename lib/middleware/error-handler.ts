@@ -1,7 +1,7 @@
-import * as Express from 'express';
+import { Request, Response, NextFunction } from 'express';
 import * as ErrorTypes from '../types/error';
 
-export function ErrorHandler(err: Error, _req: Express.Request, res: Express.Response, _next: Express.NextFunction) {
+export function ErrorHandler(err: Error, _req: Request, res: Response, _next: NextFunction) {
   if (err instanceof ErrorTypes.ClientError) {
     res.status(err.code).send({ error: err.Message() });
     return;

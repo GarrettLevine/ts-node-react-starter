@@ -1,19 +1,25 @@
 import * as React from 'react';
-import * as ReactRouter from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    RouteComponentProps
+} from 'react-router-dom';
 import * as History from 'history';
 
 import App from './App';
 
 const history = History.createBrowserHistory();
+
 class RouterContainer extends React.Component {
     render(): JSX.Element {
         return (
-            <ReactRouter.BrowserRouter>
-                <ReactRouter.Switch>
-                    <ReactRouter.Route path='/' exact component={App} />
-                    <ReactRouter.Route path='/*' component={(): JSX.Element => <h1>WOOPS</h1>} />
-                </ReactRouter.Switch>
-            </ReactRouter.BrowserRouter>
+            <Router>
+                <Switch>
+                    <Route path='/' exact component={App} history={history}/>
+                    <Route path='/*' component={(): JSX.Element => <h1>WOOPS</h1>} />
+                </Switch>
+            </Router>
         );
     }
 }
