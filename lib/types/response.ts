@@ -16,13 +16,13 @@ export class CreateResponse {
   data: any;
   error: string;
 
-  constructor(data: any, error: string) {
+  constructor(data: any, error: string = '') {
     this.data = data;
     this.error = error;
   }
 
   Response(): Response {
-    if (this.error !== '') {
+    if (this.data === null || this.error !== '') {
       return {
         error: { message: this.error },
       };
