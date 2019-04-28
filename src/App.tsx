@@ -1,8 +1,7 @@
 import * as React from 'react';
+import * as Components from './components';
 
-import components from './components';
-const { Header, componentTypes } = components;
-
+const { Header, componentTypes } = Components.default;
 export default class App extends React.Component<{}, {}> {
     render() {
       return (

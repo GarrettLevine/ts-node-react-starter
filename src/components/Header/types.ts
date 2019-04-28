@@ -9,3 +9,7 @@ export enum HeaderType {
   Light = 'is-light',
   Dark = 'is-dark',
 }
+
+export default {
+   HeaderType,
+};

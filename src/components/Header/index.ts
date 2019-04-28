@@ -1,9 +1,9 @@
 import Header from './Header';
 import types from './types';
 
-const exports = {
+export default {
   Header: Header,
-  Types: types,
+  Types: {
+    HeaderType: types.HeaderType,
+  },
 };
-
-export default exports;

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run clean && npm run build && npm run watch",
     "build": "npm run build-ts && npm run tslint",
-    "build-react": "./node_modules/.bin/webpack-dev-server",
+    "build-react": "./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js",
     "build-ts": "tsc",
     "clean": "rm -rf public && mkdir -p public",
     "serve": "./node_modules/.bin/nodemon public/lib/server.js",
