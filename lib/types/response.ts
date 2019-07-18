@@ -6,29 +6,7 @@ export interface ErrorResponse {
   error: ErrorMessage;
 }
 
-export interface Response {
-  data?: any;
+export interface Response<T> {
+  data?: T;
   error?: ErrorMessage;
-}
-
-// DataResponse represents the response when wrapping any given data in an object with the field 'data'.
-export class CreateResponse {
-  data: any;
-  error: string;
-
-  constructor(data: any, error: string = '') {
-    this.data = data;
-    this.error = error;
-  }
-
-  Response(): Response {
-    if (this.data === null || this.error !== '') {
-      return {
-        error: { message: this.error },
-      };
-    }
-    return {
-      data: this.data,
-    };
-  }
 }
