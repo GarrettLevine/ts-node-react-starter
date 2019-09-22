@@ -1,21 +1,29 @@
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import * as handler from './handler/handler';
+import * as hTypes from './handler/types';
+import * as router from './router/router';
+import * as rTypes from './router/types';
+import * as postgres from './postgres';
+import * as pgTypes from './postgres/types';
 
-import router from './router';
-import * as MW from './middleware';
-
-const app: express.Application = express();
 const port: string = process.env.PORT || '3000';
 
-app.set('trust proxy', 1);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const op: pgTypes.Options = {
+    database: 'localhost',
+    user: 'garrettlevine',
+    password: '',
+    host: '',
+    port: 1234,
+};
+const p = new postgres.default(op);
+const rop: rTypes.Options = {
+    valueStore: p,
+};
 
-app.use(express.static(`${__dirname}/..`));
-app.use('/', router);
+const r = new router.Router(rop);
+const hop: hTypes.Options = {
+    port: port,
+    router: r.getRouter(),
+};
 
-app.use(MW.default.errorHandler);
-app.listen(port, () => {
-    console.log(`App is running at on port ${port} in dev mode`);
-    console.log('Press CTRL-C to stop\n');
-});
+const h =  new handler.Handler(hop);
+h.listen();

@@ -1,5 +1,3 @@
-import * as db from './db';
+import { Postgres } from './db';
 
-export default {
-  db,
-};
+export default Postgres;

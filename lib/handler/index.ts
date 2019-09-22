@@ -11,6 +11,8 @@ router.get('/api', (_req: Express.Request, res: Express.Response, _next: Express
     res.status(200).json(resp);
 });
 
+
+
 router.get('*', (_req: Express.Request, res: Express.Response) => {
     res.sendFile(path.resolve('public/index.html'));
 });

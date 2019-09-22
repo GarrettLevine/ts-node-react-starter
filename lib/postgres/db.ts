@@ -1,17 +1,40 @@
 import * as pg from 'pg';
+import { Options, ClientFn } from './types';
 
-let config: pg.PoolConfig = {};
+export class Postgres {
+  conn: pg.Pool;
 
-try {
-  config = {
-    database: process.env.DB_NAME || '',
-    user: process.env.DB_USER || '',
-    password: process.env.DB_PASSSWORD || '',
-    port: Number(process.env.DB_PORT) || 5432,
-    host: process.env.DB_HOST || 'localhost',
-  };
-} catch (ex) {
-  throw new Error(ex);
+  constructor(op: Options) {
+    const conf: pg.PoolConfig = {
+      database: op.database,
+      user: op.user,
+      password: op.password,
+      port: op.port,
+      host: op.host,
+    };
+
+    this.conn = new pg.Pool(conf);
+  }
+
+  async do<T>(fn: ClientFn): Promise<T | Error> {
+    const client = await this.conn.connect();
+
+    try {
+      const res = fn(client);
+      client.release();
+
+      return res;
+    } catch (ex) {
+      client.release();
+      return Promise.reject(ex);
+    }
+  }
+
+  createValue(s: string): string {
+    return '';
+  }
+
+  getValue(s: string): string {
+    return '';
+  }
 }
-
-export default new pg.Pool(config);
