@@ -1,13 +1,11 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-
 import * as types from './types';
-import { throws } from 'assert';
 
 export class Handler {
   port: string;
   router: express.Router;
-  errorHandler: express.RequestHandler;
+  errorHandler: express.ErrorRequestHandler;
   app: express.Application;
 
   constructor(o: types.Options) {

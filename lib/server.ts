@@ -6,6 +6,7 @@ import * as router from './router/router';
 import * as rTypes from './router/types';
 import * as postgres from './postgres';
 import * as pgTypes from './postgres/types';
+import { ErrorHandler } from './middleware/error-handler';
 
 const port: string = process.env.PORT || '3000';
 
@@ -34,6 +35,7 @@ const r = new router.Router(rop);
 const hop: hTypes.Options = {
     port: port,
     router: r.getRouter(),
+    errorHandler: ErrorHandler,
 };
 
 const h =  new handler.Handler(hop);
