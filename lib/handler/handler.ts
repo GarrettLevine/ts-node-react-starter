@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
 import * as types from './types';
+import { throws } from 'assert';
 
 export class Handler {
   port: string;
@@ -20,7 +21,7 @@ export class Handler {
     app.use(bodyParser.json());
     app.use(express.static(`${__dirname}/..`));
 
-    if (this.router != undefined) {
+    if (this.router !== undefined) {
       app.use('/', this.router);
     }
 

@@ -3,16 +3,13 @@ import * as types from './types';
 import * as vsTypes from './value-store.types';
 
 export class Router {
-  valueStore: vsTypes.ValueStore;
   router: express.Router;
 
   constructor(o: types.Options) {
-    this.valueStore = o.valueStore;
-
     const router = express.Router();
-    if (o.Handlers !== undefined && o.Handlers.length > 0) {
-      o.Handlers.forEach((ho: types.HandlerOp) => {
-        router.use(ho.Path, ho.Routes);
+    if (o.routers !== undefined && o.routers.length > 0) {
+      o.routers.forEach((ho: types.RouterOp) => {
+        router.use(ho.PathName, ho.Routes);
       });
     }
 

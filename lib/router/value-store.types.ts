@@ -1,5 +1,9 @@
 import { Value } from '../types/value';
 
+export interface Options {
+  valueStore: ValueStore;
+}
+
 interface CreateValueFn {
   (v: Value): Promise<[Error, string]>;
 }

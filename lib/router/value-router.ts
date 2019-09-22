@@ -1,10 +1,21 @@
 import * as express from 'express';
 import { ClientError, ServiceError } from '../types/error';
-import { Response, StatusResp, IDResp } from '../types/response';
+import { Response, IDResp } from '../types/response';
 import { Value } from '../types/value';
-import { Router } from './router';
+import { Options, ValueStore } from './value-store.types';
 
-export class ValueRouter extends Router {
+export class ValueRouter {
+  router: express.Router;
+  valueStore: ValueStore;
+  constructor(o: Options) {
+    this.valueStore = o.valueStore;
+
+    const router = express.Router();
+    router.post('/', this.createValue);
+
+    this.router = router;
+  }
+
   async createValue(req: express.Request, res: express.Response, next: express.NextFunction) {
     const [ parseErr, userReq] = parseCreateValueReq(req);
     if (parseErr) {

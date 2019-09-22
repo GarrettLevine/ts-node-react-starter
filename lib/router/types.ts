@@ -3,10 +3,10 @@ import * as vs from './value-store.types';
 
 export interface Options {
   valueStore: vs.ValueStore;
-  Handlers?: [HandlerOp];
+  routers?: [RouterOp];
 }
 
-export interface HandlerOp {
-  Path: string;
+export interface RouterOp {
+  PathName: string;
   Routes: [express.RequestHandler];
 }

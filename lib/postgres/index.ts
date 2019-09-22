@@ -1,3 +1,3 @@
-import { Postgres } from './db';
+import { Postgres } from './postgres';
 
 export default Postgres;
