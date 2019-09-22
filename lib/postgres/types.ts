@@ -9,5 +9,5 @@ export interface Options {
 }
 
 export interface ClientFn {
-  (client: pg.PoolClient): Promise<any|Error>;
+  <T>(client: pg.PoolClient): Promise<[Error, T]>;
 }

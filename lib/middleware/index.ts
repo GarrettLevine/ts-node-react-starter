@@ -1,5 +1,5 @@
-import errorHandler from './error-handler';
+import { ErrorHandler } from './error-handler';
 
 export default {
-  errorHandler,
+  ErrorHandler,
 };

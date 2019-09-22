@@ -17,11 +17,11 @@ export class Postgres {
     this.conn = new pg.Pool(conf);
   }
 
-  async do<T>(fn: ClientFn): Promise<T | Error> {
+  async do<T>(fn: ClientFn): Promise<[Error, T]> {
     const client = await this.conn.connect();
 
     try {
-      const res: Promise<T | Error> = fn(client);
+      const res: Promise<[Error, T]> = fn(client);
       client.release();
 
       return res;
@@ -31,16 +31,38 @@ export class Postgres {
     }
   }
 
-  async createValue(v: Value): Promise<[Error, string]> {
-    const r: string|Error = await this.do<string>((c: pg.PoolClient): Promise<String|Error> => {
-        return c.query(`
-          INSERT INTO user (email, first_name, last_name, password) = ($1, $2, $3, $3)
-          RETURNING ID;
-        `, [v.Email, v.FirstName, v.LastName, v.Password])
-        .then((result: pg.QueryResult) => result.rows[0]);
-    });
+  createValue = async (v: Value): Promise<[Error, string]> => {
+    type idType = {
+      id: string;
+    };
 
-    return [undefined, r.toString()];
+    try {
+      const [err, res ] = await this.do<idType>(async <idType>(c: pg.PoolClient): Promise<[Error, idType]> => {
+        const q: pg.QueryConfig = {
+          name: 'create_value',
+          text: `
+            INSERT INTO value (email, first_name, last_name, password) VALUES ($1, $2, $3, $4)
+            RETURNING ID;
+          `,
+          values: [v.Email, v.FirstName, v.LastName, v.Password],
+        };
+
+        const result = await c.query(q);
+        if (result.rowCount !== 1) {
+          return [new Error(`unexpected number of rows created: expected 1 received ${result.rowCount}`), undefined];
+        }
+
+        return Promise.resolve([undefined, result.rows[0]]);
+      });
+
+      if (err) {
+        throw err;
+      }
+
+      return [undefined, res.id];
+    } catch (ex) {
+      return [ex, undefined];
+    }
   }
 
   async getValue(s: string): Promise<[Error, string]> {

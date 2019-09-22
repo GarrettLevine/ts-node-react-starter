@@ -11,11 +11,11 @@ import { ErrorHandler } from './middleware/error-handler';
 const port: string = process.env.PORT || '3000';
 
 const op: pgTypes.Options = {
-    database: 'localhost',
-    user: 'garrettlevine',
+    database: 'test',
+    user: 'garrett',
     password: '',
-    host: '',
-    port: 1234,
+    host: 'localhost',
+    port: 5432,
 };
 const pg = new postgres.default(op);
 const vrOp: vrTypes.Options = {

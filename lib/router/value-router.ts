@@ -10,31 +10,40 @@ export class ValueRouter {
   constructor(o: Options) {
     this.valueStore = o.valueStore;
 
+
     const router = express.Router();
     router.post('/', this.createValue);
 
     this.router = router;
   }
 
-  async createValue(req: express.Request, res: express.Response, next: express.NextFunction) {
+  createValue = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const [ parseErr, userReq] = parseCreateValueReq(req);
     if (parseErr) {
+      console.log(parseErr);
       next(parseErr);
       return;
     }
 
-    const [createErr, id ] = await this.valueStore.createValue(userReq);
-    if (createErr) {
+    try {
+      const [createErr, vID ] = await this.valueStore.createValue(userReq);
+      if (createErr) {
+        next(new ServiceError());
+        return;
+      }
+
+      const response: Response<IDResp> = {
+        data: {
+          id: vID,
+        },
+      };
+      res.status(200).send(response);
+    } catch (ex) {
+      console.log(ex);
       next(new ServiceError());
       return;
     }
 
-    const response: Response<IDResp> = {
-      data: {
-        id: id,
-      },
-    };
-    res.status(200).send(response);
   }
 }
 
@@ -46,28 +55,27 @@ function parseCreateValueReq(r: express.Request): [Error, Value] {
     password: string;
   };
 
-  let value: Value; // tslint:disable-line
   const { email, first_name, last_name, password }: valueReq = r.body;
-
-  if (email === '') {
-    return [new ClientError('email must be provided'), value];
+  if (!email) {
+    return [new ClientError('email must be provided'), undefined];
   }
-  value.Email = email;
 
-  if (first_name === '') {
-    return [new ClientError('first_name must be provided'), value];
+  if (!first_name) {
+    return [new ClientError('first_name must be provided'), undefined];
   }
-  value.FirstName = first_name;
 
-  if (last_name === '') {
-    return [new ClientError('last_name must be provided'), value];
+  if (!last_name) {
+    return [new ClientError('last_name must be provided'), undefined];
   }
-  value.LastName = last_name;
 
-  if (password === '') {
-    return [new ClientError('password must be provided'), value];
+  if (!password) {
+    return [new ClientError('password must be provided'), undefined];
   }
-  value.Password = password;
 
-  return [undefined, value];
+  return [undefined, {
+    Email: email,
+    FirstName: first_name,
+    LastName: last_name,
+    Password: password,
+  }];
 }
