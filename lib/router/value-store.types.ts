@@ -1,9 +1,11 @@
+import { Value } from '../types/value';
+
 interface CreateValueFn {
-  (s: string): string;
+  (v: Value): Promise<[Error, string]>;
 }
 
 interface GetValueFn {
-  (s: string): string;
+  (s: string): Promise<[Error, string]>;
 }
 
 export interface ValueStore {

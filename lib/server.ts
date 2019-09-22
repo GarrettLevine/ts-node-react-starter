@@ -14,12 +14,13 @@ const op: pgTypes.Options = {
     host: '',
     port: 1234,
 };
-const p = new postgres.default(op);
-const rop: rTypes.Options = {
-    valueStore: p,
-};
+const pg = new postgres.default(op);
 
+const rop: rTypes.Options = {
+    valueStore: pg,
+};
 const r = new router.Router(rop);
+
 const hop: hTypes.Options = {
     port: port,
     router: r.getRouter(),

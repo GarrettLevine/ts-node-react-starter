@@ -1,7 +1,9 @@
-export class ErrorType {
+export class ErrorType extends Error {
   message: string;
 
   constructor(msg: string) {
+    super();
+
     this.message = msg;
   }
 

@@ -10,3 +10,11 @@ export interface Response<T> {
   data?: T;
   error?: ErrorMessage;
 }
+
+export interface StatusResp {
+  status: string;
+}
+
+export interface IDResp {
+  id: string;
+}
