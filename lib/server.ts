@@ -4,7 +4,7 @@ import * as vRouter from './router/value-router';
 import * as vrTypes from './router/value-store.types';
 import * as router from './router/router';
 import * as rTypes from './router/types';
-import * as postgres from './postgres';
+import { Postgres } from './postgres/postgres';
 import * as pgTypes from './postgres/types';
 import { ErrorHandler } from './middleware/error-handler';
 
@@ -17,7 +17,7 @@ const op: pgTypes.Options = {
     host: 'localhost',
     port: 5432,
 };
-const pg = new postgres.default(op);
+const pg = new Postgres(op);
 const vrOp: vrTypes.Options = {
     valueStore: pg,
 };
