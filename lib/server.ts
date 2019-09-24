@@ -1,10 +1,10 @@
-import * as handler from './handler/handler';
+import { Handler } from './handler/handler';
 import * as hTypes from './handler/types';
-import * as vRouter from './router/value-router';
+import { ValueRouter } from './router/value-router';
 import * as router from './router/router';
 import * as rTypes from './router/types';
 import { Postgres } from './postgres/postgres';
-import { Value } from './postgres/value';
+import { Value as ValueStore } from './postgres/value';
 import * as pgTypes from './postgres/types';
 import { ErrorHandler } from './middleware/error-handler';
 
@@ -19,13 +19,12 @@ const op: pgTypes.Options = {
 };
 const pg = new Postgres(op);
 
-const valueStore = new Value(pg);
-
-const valueRouter = new vRouter.ValueRouter(valueStore);
+const valueStore = new ValueStore(pg);
+const valueRouter = new ValueRouter(valueStore);
 const rop: rTypes.Options = {
     routers: [{
         PathName: '/value',
-        Routes: [valueRouter.router],
+        Routes: valueRouter.router,
     }],
 };
 const r = new router.Router(rop);
@@ -36,5 +35,5 @@ const hop: hTypes.Options = {
     errorHandler: ErrorHandler,
 };
 
-const h =  new handler.Handler(hop);
+const h =  new Handler(hop);
 h.listen();

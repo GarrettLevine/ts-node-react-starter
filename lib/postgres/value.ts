@@ -1,5 +1,5 @@
 import * as pg from 'pg';
-import { Client, idType } from './types';
+import { Client, ID } from './types';
 import * as valueTypes from '../types/value';
 
 export class Value  {
@@ -11,7 +11,7 @@ export class Value  {
   // CreateValue creates a value in the ValueStore given the provided Value, returning the ID of the new value if successful.
   CreateValue = async (v: valueTypes.Value): Promise<[Error, string]> => {
     try {
-      const [err, res ] = await this.client.Do<idType>(async <idType>(c: pg.PoolClient): Promise<[Error, idType]> => {
+      const [err, res ] = await this.client.Do<ID>(async <ID>(c: pg.PoolClient): Promise<[Error, ID]> => {
         const q: pg.QueryConfig = {
           name: 'create_value',
           text: `

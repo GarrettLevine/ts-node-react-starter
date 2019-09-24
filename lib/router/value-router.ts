@@ -19,9 +19,8 @@ export class ValueRouter {
   }
 
   createValue = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const [ parseErr, userReq] = parseCreateValueReq(req);
+    const [ parseErr, userReq ] = parseCreateValueReq(req);
     if (parseErr) {
-      console.log(parseErr);
       next(parseErr);
       return;
     }
@@ -40,7 +39,6 @@ export class ValueRouter {
       };
       res.status(200).send(response);
     } catch (ex) {
-      console.log(ex);
       next(new ServiceError());
       return;
     }

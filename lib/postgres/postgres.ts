@@ -2,7 +2,7 @@ import * as pg from 'pg';
 import { Options, ClientFn } from './types';
 
 export class Postgres {
-  conn: pg.Pool;
+  pool: pg.Pool;
 
   constructor(op: Options) {
     const conf: pg.PoolConfig = {
@@ -13,11 +13,12 @@ export class Postgres {
       host: op.host,
     };
 
-    this.conn = new pg.Pool(conf);
+    this.pool = new pg.Pool(conf);
+
   }
 
   async Do<T>(fn: ClientFn): Promise<[Error, T]> {
-    const client = await this.conn.connect();
+    const client = await this.pool.connect();
 
     try {
       const res: Promise<[Error, T]> = fn(client);

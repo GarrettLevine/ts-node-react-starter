@@ -1,10 +1,11 @@
 import * as pg from 'pg';
 
-export interface idType{
+// idType represents a general response format of an ID.
+export interface ID {
   id: string;
 }
 
-
+// Options represents the information necessary to for instantiating a connection to postgres.
 export interface Options {
   database: string;
   user: string;

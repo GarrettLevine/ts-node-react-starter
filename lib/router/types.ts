@@ -7,5 +7,5 @@ export interface Options {
 
 export interface RouterOp {
   PathName: string;
-  Routes: [express.RequestHandler];
+  Routes: express.Router;
 }
