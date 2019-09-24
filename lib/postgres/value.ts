@@ -1,5 +1,5 @@
 import * as pg from 'pg';
-import { Client } from './types';
+import { Client, idType } from './types';
 import * as valueTypes from '../types/value';
 
 export class Value  {
@@ -8,11 +8,8 @@ export class Value  {
     this.client = c;
   }
 
-  createValue = async (v: valueTypes.Value): Promise<[Error, string]> => {
-    type idType = {
-      id: string;
-    };
-
+  // CreateValue creates a value in the ValueStore given the provided Value, returning the ID of the new value if successful.
+  CreateValue = async (v: valueTypes.Value): Promise<[Error, string]> => {
     try {
       const [err, res ] = await this.client.Do<idType>(async <idType>(c: pg.PoolClient): Promise<[Error, idType]> => {
         const q: pg.QueryConfig = {
@@ -29,7 +26,7 @@ export class Value  {
           return [new Error(`unexpected number of rows created: expected 1 received ${result.rowCount}`), undefined];
         }
 
-        return Promise.resolve([undefined, result.rows[0]]);
+        return [undefined, result.rows[0]];
       });
 
       if (err) {
@@ -42,7 +39,7 @@ export class Value  {
     }
   }
 
-  async getValue(s: string): Promise<[Error, string]> {
+  async GetValue(s: string): Promise<[Error, string]> {
     return [undefined, ''];
   }
 }

@@ -1,5 +1,8 @@
 import * as pg from 'pg';
-import { promises } from 'dns';
+
+export interface idType{
+  id: string;
+}
 
 export interface Options {
   database: string;

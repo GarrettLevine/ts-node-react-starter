@@ -1,7 +1,6 @@
 import * as handler from './handler/handler';
 import * as hTypes from './handler/types';
 import * as vRouter from './router/value-router';
-import * as vrTypes from './router/value-store.types';
 import * as router from './router/router';
 import * as rTypes from './router/types';
 import { Postgres } from './postgres/postgres';
@@ -12,11 +11,11 @@ import { ErrorHandler } from './middleware/error-handler';
 const port: string = process.env.PORT || '3000';
 
 const op: pgTypes.Options = {
-    database: 'test',
-    user: 'garrett',
-    password: '',
-    host: 'localhost',
-    port: 5432,
+    database: process.env.DB_NAME || 'test',
+    user: process.env.DB_USER || 'garrett',
+    password: process.env.DB_PASSWORD || '',
+    host: process.env.HOST || 'localhost',
+    port: Number(process.env.PORT) || 5432,
 };
 const pg = new Postgres(op);
 

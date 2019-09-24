@@ -7,6 +7,7 @@ import { ValueStore } from './value-store.types';
 export class ValueRouter {
   router: express.Router;
   valueStore: ValueStore;
+
   constructor(vs: ValueStore) {
     this.valueStore = vs;
 
@@ -26,7 +27,7 @@ export class ValueRouter {
     }
 
     try {
-      const [createErr, vID ] = await this.valueStore.createValue(userReq);
+      const [createErr, vID ] = await this.valueStore.CreateValue(userReq);
       if (createErr) {
         next(new ServiceError());
         return;

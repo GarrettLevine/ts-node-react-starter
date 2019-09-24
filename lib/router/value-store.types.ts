@@ -9,6 +9,6 @@ interface GetValueFn {
 }
 
 export interface ValueStore {
-  createValue: CreateValueFn;
-  getValue: GetValueFn;
+  CreateValue: CreateValueFn;
+  GetValue: GetValueFn;
 }
