@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as types from './types';
-import * as vsTypes from './value-store.types';
 
 export class Router {
   router: express.Router;

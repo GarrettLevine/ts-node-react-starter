@@ -2,13 +2,13 @@ import * as express from 'express';
 import { ClientError, ServiceError } from '../types/error';
 import { Response, IDResp } from '../types/response';
 import { Value } from '../types/value';
-import { Options, ValueStore } from './value-store.types';
+import { ValueStore } from './value-store.types';
 
 export class ValueRouter {
   router: express.Router;
   valueStore: ValueStore;
-  constructor(o: Options) {
-    this.valueStore = o.valueStore;
+  constructor(vs: ValueStore) {
+    this.valueStore = vs;
 
 
     const router = express.Router();

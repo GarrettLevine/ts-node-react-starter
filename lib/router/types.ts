@@ -2,7 +2,6 @@ import * as express from 'express';
 import * as vs from './value-store.types';
 
 export interface Options {
-  valueStore: vs.ValueStore;
   routers?: [RouterOp];
 }
 
