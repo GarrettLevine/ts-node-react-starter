@@ -4,6 +4,7 @@ export interface idType{
   id: string;
 }
 
+
 export interface Options {
   database: string;
   user: string;
@@ -11,6 +12,7 @@ export interface Options {
   port: number;
   host: string;
 }
+
 
 // ClientFn represents a function which receives the client pool connection.
 export interface ClientFn {
