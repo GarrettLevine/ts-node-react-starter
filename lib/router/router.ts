@@ -6,9 +6,9 @@ export class Router {
 
   constructor(o: types.Options) {
     const router = express.Router();
-    if (o.routers !== undefined && o.routers.length > 0) {
-      o.routers.forEach((ho: types.RouterOp) => {
-        router.use(ho.PathName, ho.Routes);
+    if (!o.routers && o.routers.length > 0) {
+      o.routers.forEach((ro: types.RouterOp) => {
+        router.use(ro.PathName, ro.Routes);
       });
     }
 

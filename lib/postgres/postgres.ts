@@ -14,7 +14,6 @@ export class Postgres {
     };
 
     this.pool = new pg.Pool(conf);
-
   }
 
   async Do<T>(fn: ClientFn): Promise<[Error, T]> {

@@ -1,5 +1,5 @@
-import { Handler } from './handler/handler';
-import * as hTypes from './handler/types';
+import { App } from './app/app';
+import * as aTypes from './app/types';
 import { ValueRouter } from './router/value-router';
 import * as router from './router/router';
 import * as rTypes from './router/types';
@@ -29,11 +29,11 @@ const rop: rTypes.Options = {
 };
 const r = new router.Router(rop);
 
-const hop: hTypes.Options = {
+const aops: aTypes.Options = {
     port: port,
     router: r.getRouter(),
     errorHandler: ErrorHandler,
 };
 
-const h =  new Handler(hop);
+const h =  new App(aops);
 h.listen();

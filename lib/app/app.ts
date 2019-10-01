@@ -2,7 +2,10 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as types from './types';
 
-export class Handler {
+const trust_proxy = 'trust proxy';
+const base_route = '/';
+
+export class App {
   port: string;
   router: express.Router;
   errorHandler: express.ErrorRequestHandler;
@@ -14,13 +17,13 @@ export class Handler {
     this.errorHandler = o.errorHandler;
 
     const app: express.Application = express();
-    app.set('trust proxy', 1);
+    app.set(trust_proxy, 1);
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(express.static(`${__dirname}/..`));
 
     if (this.router !== undefined) {
-      app.use('/', this.router);
+      app.use(base_route, this.router);
     }
 
     if (this.errorHandler != undefined) {

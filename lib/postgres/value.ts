@@ -15,7 +15,8 @@ export class Value  {
         const q: pg.QueryConfig = {
           name: 'create_value',
           text: `
-            INSERT INTO value (email, first_name, last_name, password) VALUES ($1, $2, $3, $4)
+            INSERT INTO value (email, first_name, last_name, password)
+            VALUES ($1, $2, $3, $4)
             RETURNING ID;
           `,
           values: [v.Email, v.FirstName, v.LastName, v.Password],
