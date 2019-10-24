@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    RouteComponentProps
 } from 'react-router-dom';
 import * as History from 'history';
 
