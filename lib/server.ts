@@ -11,14 +11,13 @@ import { ErrorHandler } from './middleware/error-handler';
 const port: string = process.env.PORT || '3000';
 
 const op: pgTypes.Options = {
-    database: process.env.DB_NAME || 'test',
+    database: process.env.DB_NAME || 'book_club_app',
     user: process.env.DB_USER || 'garrett',
     password: process.env.DB_PASSWORD || '',
     host: process.env.HOST || 'localhost',
     port: Number(process.env.PORT) || 5432,
 };
 const pg = new Postgres(op);
-
 const valueStore = new ValueStore(pg);
 const valueRouter = new ValueRouter(valueStore);
 const rop: rTypes.Options = {
@@ -29,11 +28,11 @@ const rop: rTypes.Options = {
 };
 const r = new router.Router(rop);
 
-const aops: aTypes.Options = {
+const appOps: aTypes.Options = {
     port: port,
     router: r.getRouter(),
     errorHandler: ErrorHandler,
 };
 
-const h =  new App(aops);
+const h =  new App(appOps);
 h.listen();

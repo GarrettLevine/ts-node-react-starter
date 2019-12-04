@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as types from './types';
+import * as path from 'path';
 
 const trust_proxy = 'trust proxy';
 const base_route = '/';
@@ -20,7 +21,7 @@ export class App {
     app.set(trust_proxy, 1);
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-    app.use(express.static(`${__dirname}/..`));
+    app.use(express.static(`${__dirname}/../..`));
 
     if (this.router !== undefined) {
       app.use(base_route, this.router);
@@ -29,6 +30,11 @@ export class App {
     if (this.errorHandler != undefined) {
       app.use(this.errorHandler);
     }
+
+    // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(`${__dirname}/../..`, '', 'index.html'));
+    });
 
     this.app = app;
   }

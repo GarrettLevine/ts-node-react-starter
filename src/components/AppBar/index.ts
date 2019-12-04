@@ -1,8 +1,8 @@
-import Header from './Header';
+import * as AppBar from './AppBar';
 import types from './types';
 
 export default {
-  Header: Header,
+  AppBar: AppBar,
   Types: {
     HeaderType: types.HeaderType,
   },

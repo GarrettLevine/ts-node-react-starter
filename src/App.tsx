@@ -1,17 +1,13 @@
 import * as React from 'react';
-import * as Components from './components';
+import { Bar } from './components/AppBar/AppBar';
 
-const { Header, componentTypes } = Components.default;
 export default class App extends React.Component<{}, {}> {
     render() {
+
       return (
-        <section className='app__container'>
-          <Header
-            title='This project is GREAT'
-            subtitle='is the one that you want'
-            type={componentTypes.HeaderType.Primary}
-          />
-      </section>
+        <main className='app__container'>
+          <Bar title='test' />
+        </main>
     );
   }
 }

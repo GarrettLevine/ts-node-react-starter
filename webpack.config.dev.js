@@ -6,7 +6,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
     entry: {
-        bundle: ['./src/index.tsx', './src/scss/main.scss'],
+        bundle: ['./src/index.tsx'],
     },
     output: {
         filename: '[name].js',
@@ -25,10 +25,6 @@ module.exports = {
                         test: /\.(js|jsx|ts|tsx)$/,
                         loaders: [ 'babel-loader', 'ts-loader' ],
                         include: path.resolve('src')
-                    },
-                    {
-                        test: /\.scss$/,
-                        loaders: ['style-loader', 'css-loader', 'sass-loader'],
                     },
                 ]
             }
