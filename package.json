@@ -8,7 +8,7 @@
     "build": "npm run build-ts && npm run tslint",
     "build-react": "./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js",
     "build-ts": "tsc",
-    "clean": "rm -rf public && mkdir -p public",
+    "clean": "rimraf public && mkdir public",
     "serve": "./node_modules/.bin/nodemon public/lib/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\" \"npm run build-react\"",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
@@ -34,7 +34,8 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.8",
